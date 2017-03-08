@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && source "../src/os/utils.sh"
+    && source "../script/helper/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -14,13 +14,13 @@ main() {
 
     find \
         ../test \
-        ../src/os \
+        ../script \
         ../src/shell \
         -type f \
         ! -path '../src/shell/curlrc' \
         ! -path '../src/shell/inputrc' \
-        ! -path '../src/os/preferences/macos/*.applescript' \
-        ! -path '../src/os/preferences/macos/*.terminal' \
+        ! -path '../src/preferences/macos/*.applescript' \
+        ! -path '../src/preferences/macos/*.terminal' \
         -exec shellcheck \
                 -e SC1090 \
                 -e SC1091 \

@@ -7,7 +7,7 @@ before_install:
   - ./test/customize_environment.sh
 
 install:
-  - ./src/os/setup.sh -y
+  - ./script/setup -y
 
 language: generic
 

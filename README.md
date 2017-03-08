@@ -11,12 +11,12 @@ To set up the `dotfiles` just run the appropriate snippet in the
 terminal:
 
 (:warning: **DO NOT** run the `setup` snippet if you don't fully
-understand [what it does](src/os/setup.sh). Seriously, **DON'T**!)
+understand [what it does](script/setup). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---|:---|
-| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/jd20/dotfiles/master/src/os/setup.sh)"` |
-| `Ubuntu` | `bash -c "$(wget -qO - https://raw.github.com/jd20/dotfiles/master/src/os/setup.sh)"` |
+| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/jd20/dotfiles/master/script/setup)"` |
+| `Ubuntu` | `bash -c "$(wget -qO - https://raw.github.com/jd20/dotfiles/master/script/setup)"` |
 
 That's it! :sparkles:
 
@@ -24,17 +24,17 @@ The setup process will:
 
 * Download the dotfiles on your computer (by default it will suggest
   `~/projects/dotfiles`)
-* Create some additional [directories](src/os/create_directories.sh)
-* [Symlink](src/os/create_symbolic_links.sh) the
+* Create some additional [directories](script/helper/update/create_directories.sh)
+* [Symlink](script/helper/update/create_symbolic_links.sh) the
   [`git`](src/git),
   [`shell`](src/shell), and
   [`vim`](src/vim) files
 * Install applications / command-line tools for
-  [`macOS`](src/os/install/macos) /
-  [`Ubuntu`](src/os/install/ubuntu)
+  [`macOS`](script/macos) /
+  [`Ubuntu`](script/ubuntu)
 * Set custom
-  [`macOS`](src/os/preferences/macos) /
-  [`Ubuntu`](src/os/preferences/ubuntu) preferences
+  [`macOS`](script/preferences/macos) /
+  [`Ubuntu`](script/preferences/ubuntu) preferences
 * Install [`vim` plugins](src/vim/vim/plugins)
 
 
@@ -191,14 +191,14 @@ settings from `~/.vimrc`.
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [`setup` snippets](#setup) and [in the
-`setup` script](https://github.com/jd20/dotfiles/blob/1503cf23ef23f6e31342b140bcd246625160b94f/src/os/setup.sh#L3).
+`setup` script](https://github.com/jd20/dotfiles/blob/1503cf23ef23f6e31342b140bcd246625160b94f/script/setup#L3).
 
 
 ## Update
 
 To update the dotfiles you can either run the [`setup`
-script](src/os/setup.sh) or, if you want to just update one particular
-part, run the appropriate [`os` script](src/os).
+script](script/setup) or, if you want to just update one particular
+part, run the appropriate [`update` script](script).
 
 
 ## Acknowledgements
