@@ -160,23 +160,60 @@ install_dotfiles() {
 
 }
 
+check_dropbox_folder() {
+
+    local -r dropboxDotfiles=$1
+
+    # Wait up to 15 seconds for the dropbox dotfiles folder to
+    # appear (this is because it may take a little while to sync)
+
+    for (( i=1; i<=5; i++ )); do
+
+        [ -d $dropboxDotfiles ] && break
+
+        echo "Sleeping..."
+        sleep 3
+
+    done
+
+}
+
+install_dropbox_dotfiles() {
+    
+    local -r dropbox="$(get_dropbox_folder)"
+    local -r dropboxDotfiles="$dropbox/dotfiles"
+
+    # Ensure the dropbox folder exists
+    
+    if [ ! -d "$dropbox" ]; then
+        print_warning "Dropbox was not detected on this system, skipping"
+        return
+    fi
+
+    # Wait if necessary, until the dropbox dotfiles folder appears
+
+    check_dropbox_folder "$dropboxDotfiles"
+
+    # Install dotfiles if a dotfiles folder exists
+    
+    if [ -d "$dropboxDotfiles" ]; then
+        install_dotfiles "$dropboxDotfiles" "$@"
+    else
+        print_warning "Dropbox folder did not contain any dotfiles, skipping"
+    fi
+    
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
     print_in_purple "\n • Link local config files from Dropbox\n\n"
-
-    dropbox=$(get_dropbox_folder)
-    if [ -n "$dropbox" ] && [ -d "$dropbox/dotfiles" ]; then
-        install_dotfiles "$dropbox/dotfiles" "$@"
-    else
-        print_warning "A Dropbox dotfiles folder was not found, skipping"
-    fi
+    install_dropbox_dotfiles
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         
     print_in_purple "\n • Link dotfiles from repo\n\n"
-    
     install_dotfiles "$(cd ../../../src && pwd)" "$@"
 
 }
