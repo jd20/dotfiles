@@ -5,6 +5,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+if cmd_exists "git" && is_git_repository; then
+    if ! $skipQuestions; then
+        ./helper/update/update_content.sh
+    fi
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 helper/update/create_directories.sh
 helper/update/create_symbolic_links.sh "$@"
 helper/update/create_local_config_files.sh

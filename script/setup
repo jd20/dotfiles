@@ -269,6 +269,14 @@ main() {
     
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    if cmd_exists "git"; then
+        if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
+            ./helper/setup/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+        fi
+    fi
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ./update "$@"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -277,24 +285,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if cmd_exists "git"; then
-
-        if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            ./helper/setup/initialize_git_repository.sh "$DOTFILES_ORIGIN"
-        fi
-
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-        if ! $skipQuestions; then
-            ./helper/setup/update_content.sh
-        fi
-
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     if ! $skipQuestions; then
-        ./restart.sh
+        ./restart
     fi
 
 }
