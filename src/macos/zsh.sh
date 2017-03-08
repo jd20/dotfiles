@@ -8,39 +8,23 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 change_default_shell() {
 
-    declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.zshrc"
-
-    local configs=""
-    local pathConfig=""
-
-    local newShellPath=""
-    local brewPrefix=""
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Try to get the path of the `ZSH`
     # version installed through `Homebrew`.
 
-    brewPrefix="$(brew_prefix)" \
-        || return 1
+    local brewPrefix="$(brew_prefix)" || return 1
+    local newShellPath="$brewPrefix/bin/zsh"
 
-    pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
-    zshPath="ZSH=\"$(cd .. && pwd)\""
-    configs="
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-$pathConfig
-$zshPath
-
-export PATH
-"
-
-    newShellPath="$brewPrefix/bin/zsh" \
+    if [ ! -e "$newShellPath" ]; then
+        print_error "Missing ZSH in brew path: $newShellPath"
+        return 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Add the path of the `Bash` version installed through `Homebrew`
-    # to the list of login shells from the `/etc/shelqls` file.
+    # Add the path of the `ZSH` version installed through `Homebrew`
+    # to the list of login shells from the `/etc/shells` file.
     #
     # This needs to be done because applications use this file to
     # determine whether a shell is valid (e.g.: `chsh` consults the
@@ -58,23 +42,10 @@ export PATH
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Set latest version of `Bash` as the default
-    # (macOS uses by default an older version of `Bash`).
+    # Set the latest version of `ZSH` as the default
 
     chsh -s "$newShellPath" &> /dev/null
     print_result $? "ZSH (use latest version)"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
-
-    if ! grep "^$pathConfig" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
-        execute \
-            "printf '%s' '$configs' >> $LOCAL_SHELL_CONFIG_FILE \
-                && . $LOCAL_SHELL_CONFIG_FILE" \
-            "ZSH (update $LOCAL_SHELL_CONFIG_FILE)"
-    fi
 
 }
 
