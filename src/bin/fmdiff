@@ -1,0 +1,31 @@
+#!/usr/bin/ruby
+
+require 'fileutils'
+
+left_dir = "/tmp/ChangesForReview/Repository"
+right_dir = "/tmp/ChangesForReview/Local"
+files = []
+
+suppress = !ARGV.delete('--suppress').nil?
+
+# Purge temp directories
+[left_dir, right_dir].each do |dir|
+  FileUtils.rm_rf(dir) if File.exists?(dir)
+end
+
+# Run diff with diff-cmd set to our helper script
+puts "Scanning for diffs... "
+helper_path = File.expand_path("~/bin/fmdiff_helper.rb")
+commands = `git difftool -y -x #{helper_path} #{ARGV.join(' ')}`.split("\n").collect{ |x| x.chomp.strip }
+commands.each do |line|
+  files << $1 if line =~ /^Added: (.*)$/
+end
+
+if files.empty?
+  puts "No files to diff were found!"
+  exit!
+end
+
+# Call FileMerge
+fm_path = "/usr/bin/opendiff"
+system "#{fm_path} #{left_dir} #{right_dir}" if not suppress

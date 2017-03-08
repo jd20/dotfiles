@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+    && . "helper/utils.sh"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+find_installers() {
+
+    findCmd="find ../src -name \"*~\" -prune -o $(find_ignore_dirs)"
+    findCmd="$findCmd -name install.sh -maxdepth 2 -print"
+    eval "$findCmd"
+
+}
+
+run_installers() {
+        
+    IFS=$'\n' installers=($(find_installers))
+
+    for i in "${installers[@]}"; do
+        if [ ! -x "$i" ]; then
+            print_error "Installers must be executable: $i"
+        else
+            echo "$i"
+        fi
+    done
+
+}
+
+main() {
+
+    print_in_purple "\n • Run topic-specific installers\n\n"
+
+    run_installers
+
+}
+
+main

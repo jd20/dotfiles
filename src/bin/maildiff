@@ -1,0 +1,50 @@
+#!/usr/bin/ruby
+
+require 'fileutils'
+
+puts "Generating diff..."
+`fmdiff --suppress #{ARGV.join(' ')}`
+
+# Verify output
+left_dir = "/tmp/ChangesForReview/Repository"
+right_dir = "/tmp/ChangesForReview/Local"
+[left_dir, right_dir].each do |dir|
+  if not File.exists?(dir)
+    puts "No diff output found... Exiting!"
+    exit!
+  end
+end
+
+# fmdiff creates a directory in /tmp called ChangesForReview;
+# we want that directory to have a unique name for later identification.
+src_dir = '/tmp/ChangesForReview'
+uniq_dir = "#{src_dir}-#{Time.new.to_i}"
+begin
+  File.rename(src_dir, uniq_dir)
+rescue => e
+  puts "Failed to rename #{src_dir} => #{uniq_dir}: #{e}"
+  exit!
+end
+
+# Create the packaged app
+script_name = 'Double-Click-Me.app'
+script_path = File.expand_path(script_name, uniq_dir)
+rsc_path = "#{File.basename(uniq_dir)}/#{script_name}/Contents/Resources"
+script = %Q{do shell script "/usr/bin/opendiff /Volumes/#{rsc_path}/Repository /Volumes/#{rsc_path}/Local"}
+
+# Create an executable applescript  
+puts "osacompile -o #{script_path} -e '#{script}'"
+`osacompile -o #{script_path} -e '#{script}'`
+  
+# Move the Repository and Local directories into the app bundle
+%w( Repository Local ).each{ |dir| `mv #{File.expand_path(dir, uniq_dir)} /tmp/#{rsc_path}` }
+
+# Create the disk image
+attachment_path = uniq_dir + '.dmg'
+`hdiutil create -quiet -srcfolder #{uniq_dir} -imagekey zlib-level=6 #{attachment_path}`
+  
+# Remove the unique ChangesForReview directory
+FileUtils.rm_rf uniq_dir
+
+# Create and send an e-mail with the ChangesForReview disk image
+`open -a /Applications/Mail.app #{attachment_path}`
