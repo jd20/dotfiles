@@ -8,5 +8,5 @@ require_macos
 
 ./xcode.sh
 ./homebrew.sh
-./bash.sh
+./zsh.sh
 ./misc.sh
