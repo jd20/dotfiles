@@ -21,7 +21,7 @@ run_installers() {
         if [ ! -x "$i" ]; then
             print_error "Installers must be executable: $i"
         else
-            source "$i"
+            "$i"
         fi
     done
 
