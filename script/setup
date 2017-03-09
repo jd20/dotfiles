@@ -69,7 +69,7 @@ download_dotfiles() {
     tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_TARBALL_URL" "$tmpFile"
-    print_result $? "Download archive" "true"
+    print_result $? "Download archive"
     printf "\n"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -111,14 +111,14 @@ download_dotfiles() {
     fi
 
     mkdir -p "$dotfilesDirectory"
-    print_result $? "Create '$dotfilesDirectory'" "true"
+    print_result $? "Create '$dotfilesDirectory'"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Extract archive in the `dotfiles` directory.
 
     extract "$tmpFile" "$dotfilesDirectory"
-    print_result $? "Extract archive" "true"
+    print_result $? "Extract archive"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
