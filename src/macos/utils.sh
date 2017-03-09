@@ -126,7 +126,7 @@ mas_install() {
     # Install the specified application.
 
     execute \
-        "mas install $MAS_PRODUCTID" \
+        "mas install $MAS_PRODUCT_ID" \
         "$MAS_READABLE_NAME"
 
 }
