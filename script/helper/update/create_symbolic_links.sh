@@ -170,8 +170,6 @@ check_dropbox_folder() {
     for (( i=1; i<=5; i++ )); do
 
         [ -d $dropboxDotfiles ] && break
-
-        echo "Sleeping..."
         sleep 3
 
     done
