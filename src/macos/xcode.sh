@@ -55,7 +55,7 @@ set_xcode_developer_directory() {
 
 main() {
 
-    print_in_purple "   Xcode\n\n"
+    print_in_purple "\n   Xcode\n\n"
 
     install_xcode_command_line_tools
     mas_install "XCode" "497799835"
