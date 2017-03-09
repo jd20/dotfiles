@@ -12,7 +12,7 @@ create_localrc() {
     # properly.
 
     declare -r filePath="$HOME/.localrc"
-    declare -r zsh="ZSH=\"$(cd ../../../src && pwd)\""
+    declare -r dotfiles="DOTFILES=\"$(cd ../../../src && pwd)\""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -22,8 +22,8 @@ create_localrc() {
     configs="
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# shortcut to this dotfiles path is \$ZSH
-export $zsh
+# shortcut to this dotfiles path is \$DOTFILES
+export $dotfiles
 "
 
     if [ ! -e "$filePath" ]; then
@@ -34,7 +34,7 @@ export $zsh
             '$configs' >> $filePath" \
             "$filePath"
 
-    elif ! grep "$zsh" < "$filePath" &> /dev/null; then
+    elif ! grep "$dotfiles" < "$filePath" &> /dev/null; then
 
         execute \
             "printf '%s' '$configs' >> $filePath" \
