@@ -6,6 +6,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # from the user's ~/Dropbox/dotfiles folder, so we need to set that
 # up before doing anything else.
 
-./xcode.sh
 ./homebrew.sh
 ../dropbox/install.sh

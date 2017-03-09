@@ -19,26 +19,6 @@ are_xcode_command_line_tools_installed() {
     xcode-select --print-path &> /dev/null
 }
 
-install_xcode() {
-
-    # If necessary, prompt user to install `Xcode`.
-
-    if ! is_xcode_installed; then
-        open "macappstores://itunes.apple.com/en/app/xcode/id497799835"
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Wait until `Xcode` is installed.
-
-    execute \
-        "until is_xcode_installed; do \
-            sleep 2; \
-         done" \
-        "Xcode.app"
-
-}
-
 install_xcode_command_line_tools() {
 
     # If necessary, prompt user to install
@@ -56,10 +36,6 @@ install_xcode_command_line_tools() {
          done" \
         "Xcode Command Line Tools"
 
-}
-
-is_xcode_installed() {
-    [ -d "/Applications/Xcode.app" ]
 }
 
 set_xcode_developer_directory() {
@@ -81,7 +57,7 @@ main() {
     print_in_purple "   Xcode\n\n"
 
     install_xcode_command_line_tools
-    install_xcode
+    mas_install "XCode" "497799835"
     set_xcode_developer_directory
     agree_with_xcode_licence
 

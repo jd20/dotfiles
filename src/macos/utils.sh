@@ -107,3 +107,26 @@ brew_upgrade() {
         "Homebrew (upgrade)"
 
 }
+
+mas_install() {
+
+    declare -r MAS_READABLE_NAME="$1"
+    declare -r MAS_PRODUCT_ID="$2"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `mas` is installed. If not, go ahead and install it.
+
+    if ! cmd_exists "mas"; then
+        brew_install "Mac App Store CLI" "mas"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Install the specified application.
+
+    execute \
+        "mas install $MAS_PRODUCTID" \
+        "$MAS_READABLE_NAME"
+
+}

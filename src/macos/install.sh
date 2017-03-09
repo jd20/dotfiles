@@ -6,7 +6,7 @@ require_macos
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-./xcode.sh
 ./homebrew.sh
-./zsh.sh
+./xcode.sh
 ./misc.sh
+./zsh.sh
