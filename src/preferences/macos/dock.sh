@@ -50,5 +50,13 @@ execute "defaults write com.apple.dock mru-spaces -bool false" \
 execute "defaults write com.apple.dock showhidden -bool true" \
     "Make icons of hidden applications translucent"
 
+# Remove the auto-hiding Dock delay
+execute "defaults write com.apple.dock autohide-delay -float 0 && \
+    defaults write com.apple.dock autohide-time-modifier -float 0" \
+    "Remove delay when hiding/showing the Dock"
+
+execute "defaults write com.apple.dashboard mcx-disabled -bool true" \
+    "Disable Dashboard"
+
 killall "Dock" &> /dev/null
 

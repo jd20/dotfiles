@@ -6,133 +6,62 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-install_apps() {
+install_packages() {
 
-    #brew_install "Android File Transfer" "android-file-transfer" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Brotli" "brotli"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "Chrome" "google-chrome" "caskroom/cask" "cask"
-    #brew_install "Chrome Canary" "google-chrome-canary" "caskroom/versions" "cask"
-    #brew_install "Chromium" "chromium" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+    brew_install "AWS Command Line Interface" "awscli"
     brew_install "FFmpeg" "ffmpeg"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Firefox" "firefox" "caskroom/cask" "cask"
-    #brew_install "Firefox Developer" "firefoxdeveloperedition" "caskroom/versions" "cask"
-    #brew_install "Firefox Nightly" "firefoxnightly" "caskroom/versions" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Flash" "flash-npapi" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "GIMP" "lisanet-gimp" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "Git" "git"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "GPG" "gpg"
+    brew_install "Go" "go"
     #brew_install "GPG Agent" "gpg-agent"
+    #brew_install "GPG" "gpg"
+    brew_install "Heroku" "heroku"
+    brew_install "Node" "node"
     #brew_install "Pinentry" "pinentry-mac"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "ImageAlpha" "imagealpha" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "ImageMagick" "imagemagick --with-webp"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "ImageOptim" "imageoptim" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "LibreOffice" "libreoffice" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "LICEcap" "licecap" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Opera" "opera" "caskroom/cask" "cask"
-    #brew_install "Opera Beta" "opera-beta" "caskroom/versions" "cask"
-    #brew_install "Opera Developer" "opera-developer" "caskroom/versions" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # `Safari Technology Preview` requires macOS 10.11.4 or la
-    # https://github.com/alrra/dotfiles/issues
-
-    #if is_supported_version "$(get_os_version)" "10.11.4"; then
-    #    brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
-    #fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+    execute "npm install -g react-native-cli" "React Native"
     brew_install "ShellCheck" "shellcheck"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Spectacle" "spectacle" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "tmux" "tmux"
-    #brew_install "tmux (pasteboard)" "reattach-to-user-namespace"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "Transmission" "transmission" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Unarchiver" "the-unarchiver" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "Vim" "vim --with-override-system-vi"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "VLC" "vlc" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "Web Font Tools: TTF/OTF → WOFF (Zopfli)" "sfnt2woff-zopfli" "bramstein/webfonttools"
-    #brew_install "Web Font Tools: TTF/OTF → WOFF" "sfnt2woff" "bramstein/webfonttools"
-    #brew_install "Web Font Tools: WOFF2" "woff2" "bramstein/webfonttools"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    #brew_install "WebKit" "webkit-nightly" "caskroom/versions" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+    brew_install "Watchman" "watchman"
+    brew_install "Waltr" "waltr"
+    brew_install "XLD" "xld"
     brew_install "Yarn" "yarn"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
 
-    #brew_install "Zopfli" "zopfli"
+install_apps() {
+
+    cask_install "0xED" "0xed"
+    mas_install "1Password" "443987910"
+    cask_install "Adobe Creative Cloud" "adobe-creative-cloud"
+    cask_install "Atom" "atom"
+    cask_install "Audio Hijack" "audio-hijack"
+    mas_install "Blackmagic Disk Speed Test" "425264550"
+    cask_install "Charles" "charles"
+    cask_install "Chrome" "google-chrome"
+    cask_install "CUDA" "cuda"
+    cask_install "Dash" "dash"
+    cask_install "Disk Inventory X" "disk-inventory-x"
+    cask_install "Evernote" "evernote"
+    cask_install "Handbrake" "handbrake"
+    mas_install "iFlicks 2" "731062389"
+    cask_install "JollysFastVNC" "jollysfastvnc"
+    cask_install "Keka" "keka"
+    cask_install "Logitech MyHarmony" "logitech-myharmony"
+    cask_install "Mactracker" "mactracker"
+    cask_install "Microsoft Office" "microsoft-office"
+    mas_install "Reeder" "880001334"
+    cask_install "Rocket" "rocket"
+    cask_install "Sequel Pro" "sequel-pro"
+    cask_install "Silverlight" "silverlight"
+    mas_install "SiteSucker" "442168834"
+    cask_install "Slack" "slack"
+    cask_install "Steam" "steam"
+    cask_install "Subler" "subler"
+    cask_install "Subtitles" "subtitles"
+    cask_install "Transmission" "transmission"
+    cask_install "Vagrant" "vagrant"
+    cask_install "VirtualBox" "virtualbox"
+    cask_install "Visual Studio Code" "visual-studio-code"
+    cask_install "VLC" "vlc"
 
 }
 
@@ -140,9 +69,12 @@ install_apps() {
 
 main() {
 
-    print_in_purple "\n   Miscellaneous\n\n"
+    print_in_purple "\n   Installing Packages\n\n"
+    install_packages
 
+    print_in_purple "\n   Installing Apps\n\n"
     install_apps
+
     printf "\n"
     brew_cleanup
 

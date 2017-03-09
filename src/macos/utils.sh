@@ -108,6 +108,12 @@ brew_upgrade() {
 
 }
 
+cask_install() {
+    
+    brew_install $1 $2 "caskroom/cask" "cask"
+    
+}
+
 mas_install() {
 
     declare -r MAS_READABLE_NAME="$1"

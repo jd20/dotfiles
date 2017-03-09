@@ -19,8 +19,11 @@ execute "defaults write -g 'InitialKeyRepeat_Level_Saved' -int 10" \
 execute "defaults write -g KeyRepeat -int 1" \
     "Set the key repeat rate to fast"
 
-execute "defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false" \
-    "Disable smart quotes"
+#execute "defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false" \
+#    "Disable smart quotes"
 
-execute "defaults write -g NSAutomaticDashSubstitutionEnabled -bool false" \
-    "Disable smart dashes"
+#execute "defaults write -g NSAutomaticDashSubstitutionEnabled -bool false" \
+#    "Disable smart dashes"
+
+execute "defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false" \
+    "Disable auto-correct"

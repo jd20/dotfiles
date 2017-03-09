@@ -7,9 +7,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   App Store\n\n"
 
-execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
-    "Enable debug menu"
-
 execute "defaults write com.apple.commerce AutoUpdate -bool true" \
     "Turn on auto-update"
 
