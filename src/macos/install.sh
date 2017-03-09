@@ -10,5 +10,5 @@ require_macos
 
 ./homebrew.sh
 ./xcode.sh
-./misc.sh
+./apps.sh
 ./zsh.sh

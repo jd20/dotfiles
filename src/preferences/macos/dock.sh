@@ -3,12 +3,34 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../../../script/helper/utils.sh"
 
+arrange_dock() {
+
+    dockutil --remove 'Siri' --no-restart
+    dockutil --remove 'Launchpad' --no-restart
+    dockutil --remove 'Contacts' --no-restart
+    dockutil --remove 'Maps' --no-restart
+    dockutil --remove 'FaceTime' --no-restart
+    dockutil --remove 'Pages' --no-restart
+    dockutil --remove 'Numbers' --no-restart
+    dockutil --remove 'Keynote' --no-restart
+    dockutil --remove 'iBooks' --no-restart
+    dockutil --remove 'App Store' --no-restart
+    
+    dockutil --add '/Applications/Atom.app' --before 'System Preferences' --no-restart
+    dockutil --add '/Applications/Xcode.app' --before 'System Preferences' --no-restart
+    dockutil --add '/Applications/Dash.app' --before 'System Preferences' --no-restart
+    dockutil --add '/Applications/Utilities/Terminal.app' --before 'System Preferences' --no-restart
+
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 print_in_purple "\n   Dock\n\n"
 
-execute "defaults write com.apple.dock autohide -bool true" \
-    "Automatically hide/show the Dock"
+brew_install "dckutil" "dockutil"
+
+execute arrange_dock \
+    "Arrange dock icons"
 
 execute "defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true" \
     "Enable spring loading for all Dock items"
@@ -25,17 +47,8 @@ execute "defaults write com.apple.dock minimize-to-application -bool true" \
 execute "defaults write com.apple.dock mru-spaces -bool false" \
     "Do not automatically rearrange spaces based on most recent use"
 
-execute "defaults write com.apple.dock persistent-apps -array && \
-         defaults write com.apple.dock persistent-others -array " \
-    "Wipe all app icons"
-
-execute "defaults write com.apple.dock show-process-indicators -bool true" \
-    "Show indicator lights for open applications"
-
 execute "defaults write com.apple.dock showhidden -bool true" \
     "Make icons of hidden applications translucent"
 
-execute "defaults write com.apple.dock tilesize -int 60" \
-    "Set icon size"
-
 killall "Dock" &> /dev/null
+
