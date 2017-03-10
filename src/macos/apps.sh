@@ -44,6 +44,7 @@ install_apps() {
     cask_install "Disk Inventory X" "disk-inventory-x"
     cask_install "Evernote" "evernote"
     cask_install "Handbrake" "handbrake"
+    cask_install "Hyper" "hyper"
     mas_install "iFlicks 2" "731062389"
     cask_install "JollysFastVNC" "jollysfastvnc"
     cask_install "Keka" "keka"

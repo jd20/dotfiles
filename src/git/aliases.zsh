@@ -5,3 +5,7 @@ if (( $+commands[hub] ))
 then
   alias git=$hub_path
 fi
+
+gi() {
+  curl -s "https://www.gitignore.io/api/$*";
+}

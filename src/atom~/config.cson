@@ -1,43 +1,36 @@
 "*":
   core:
+    autoHideMenuBar: true
     disabledPackages: [
-      "background-tips"
-      "exception-reporting"
       "metrics"
+      "exception-reporting"
     ]
-    followSymlinks: false
     hideGitIgnoredFiles: true
-    ignoredNames: [
-      ".bundle"
-      ".git"
-      "log"
-      "repositories"
-      "tmp"
-      "vendor"
-    ]
-    telemetryConsent: "no"
+    projectHome: "~/Code/"
     themes: [
-      "unity-ui"
-      "glacier-syntax"
+      "native-ui"
+      "one-dark-syntax"
     ]
   editor:
-    fontFamily: "Menlo"
+    fontFamily: "Hack"
     fontSize: 15
     invisibles: {}
+    scrollPastEnd: true
     showIndentGuide: true
-    softWrapAtPreferredLineLength: true
+    showInvisibles: true
+  "file-icons":
+    coloured: false
+    tabPaneIcon: false
   "go-plus":
-    panelDisplayMode: "closed"
-  "linter-eslint":
-    useGlobalEslint: true
-  "release-notes":
-    viewedVersion: "0.89.0"
-  "spell-check":
-    grammars: [
-      "text.plain"
-      "source.gfm"
-      "text.git-commit"
-      "text.html.basic"
-    ]
+    goPath: "~/Code/Go"
+  "go-rename": {}
+  gofmt:
+    formatTool: "goreturns"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  "unity-ui":
+    showIcons: true
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
     showOnStartup: false
