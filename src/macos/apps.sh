@@ -50,7 +50,7 @@ install_apps() {
     cask_install "JollysFastVNC" "jollysfastvnc"
     cask_install "Keka" "keka"
     cask_install "Logitech MyHarmony" "logitech-myharmony"
-    cask_install "Mactracker" "mactracker"
+    mas_install "Mactracker" "430255202"
     cask_install "Microsoft Office" "microsoft-office"
     mas_install "Reeder" "880001334"
     cask_install "Rocket" "rocket"
