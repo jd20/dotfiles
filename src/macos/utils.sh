@@ -110,7 +110,7 @@ brew_upgrade() {
 
 cask_install() {
     
-    brew_install $1 $2 "caskroom/cask" "cask"
+    brew_install "$1" "$2" "caskroom/cask" "cask"
     
 }
 
@@ -129,10 +129,16 @@ mas_install() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Make sure we're signed in (don't check exit code, because it
+    # returns an error if already signed in)
+    mas signin --dialog ""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Install the specified application.
 
     execute \
-        "mas install $MAS_PRODUCT_ID" \
+        "mas install \"$MAS_PRODUCT_ID\"" \
         "$MAS_READABLE_NAME"
 
 }

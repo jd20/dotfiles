@@ -21,7 +21,7 @@ install_packages() {
     #brew_install "Pinentry" "pinentry-mac"
     execute "npm install -g react-native-cli" "React Native"
     brew_install "ShellCheck" "shellcheck"
-    brew_install "SQLite" "sqlite"
+    brew_install "SQLite 3" "sqlite3"
     brew_install "Vim" "vim --with-override-system-vi"
     brew_install "Watchman" "watchman"
     brew_install "Waltr" "waltr"

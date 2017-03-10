@@ -174,6 +174,11 @@ check_dropbox_folder() {
 
     done
 
+    # Wait another 5 seconds, for the contents of the dotfiles
+    # folder to populate
+
+    sleep 5
+
 }
 
 install_dropbox_dotfiles() {

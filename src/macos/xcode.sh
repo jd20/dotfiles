@@ -58,7 +58,7 @@ main() {
     print_in_purple "\n   Xcode\n\n"
 
     install_xcode_command_line_tools
-    mas_install "Xcode" "497799835"
+    mas_install 'Xcode' '497799835'
     set_xcode_developer_directory
     agree_with_xcode_licence
 
