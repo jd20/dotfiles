@@ -1,0 +1,4 @@
+# `dotfiles` grabs the latest changes from GitHUb and updates things.
+# Run it periodically to make sure you're on the latest and greatest.
+
+. "$DOTFILES/script/update"
