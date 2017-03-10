@@ -131,7 +131,7 @@ mas_install() {
 
     # Make sure we're signed in (don't check exit code, because it
     # returns an error if already signed in)
-    mas signin --dialog ""
+    mas signin --dialog "" &> /dev/null
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

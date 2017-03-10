@@ -24,9 +24,7 @@ install_packages() {
     brew_install "SQLite 3" "sqlite3"
     brew_install "Vim" "vim --with-override-system-vi"
     brew_install "Watchman" "watchman"
-    brew_install "Waltr" "waltr"
     brew_install "wget" "wget"
-    brew_install "XLD" "xld"
     brew_install "Yarn" "yarn"
 
 }
@@ -66,6 +64,8 @@ install_apps() {
     cask_install "VirtualBox" "virtualbox"
     cask_install "Visual Studio Code" "visual-studio-code"
     cask_install "VLC" "vlc"
+    cask_install "Waltr" "waltr"
+    cask_install "XLD" "xld"
 
 }
 

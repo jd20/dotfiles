@@ -28,7 +28,7 @@ arrange_dock() {
 
 print_in_purple "\n   Dock\n\n"
 
-brew_install "dckutil" "dockutil"
+brew_install "dockutil" "dockutil"
 
 execute arrange_dock \
     "Arrange dock icons"
