@@ -33,6 +33,9 @@ brew_install "dockutil" "dockutil"
 execute arrange_dock \
     "Arrange dock icons"
 
+execute "defaults write com.apple.dock tilesize -int 48; killall Dock" \
+    "Use small dock icons"
+
 execute "defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true" \
     "Enable spring loading for all Dock items"
 
