@@ -26,8 +26,8 @@ create_lost_message() {
 
     # Set the login window text
 
-    message="Found this computer? Please contact $(userName) at $(userEmail)."
-    execute "sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText \"$(message)\"" \
+    message="Found this computer? Please contact $userName at $userEmail."
+    execute "sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText \"$message\"" \
         "Add a message to the login screen"
 }
 
