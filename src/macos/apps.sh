@@ -17,6 +17,7 @@ install_packages() {
     brew_install "GStreamer" "gstreamer"
     brew_install "Heroku" "heroku"
     brew_install "htop" "htop"
+    brew_install "hub" "hub"
     brew_install "Node" "node"
     #brew_install "Pinentry" "pinentry-mac"
     execute "npm install -g react-native-cli" "React Native"
