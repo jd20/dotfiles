@@ -6,7 +6,7 @@ export DOTFILES="$HOME/Code/dotfiles"
 export PROJECTS="$HOME/Code"
 
 # your default editor
-export EDITOR='code'
+export EDITOR='atom'
 
 # Add bin to PATH
 export PATH="$PATH:$DOTFILES/src/bin"
