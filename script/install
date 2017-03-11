@@ -7,7 +7,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 find_installers() {
 
-    findCmd="find ../src -name \"*~\" -prune -o $(find_ignore_dirs)"
+    # The OS-specific installer should run first, since it installs
+    # apps and commands necessary for other installers
+
+    printf "../src/$(get_os)/install.sh\n"
+
+    # Include everything else
+
+    findCmd="find ../src -name \"*~\" -prune -o $(find_ignore_dirs | grep -v $(get_os))"
     findCmd="$findCmd -name install.sh -maxdepth 2 -print"
     eval "$findCmd"
 

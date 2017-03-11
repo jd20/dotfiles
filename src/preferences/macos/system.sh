@@ -9,7 +9,7 @@ print_in_purple "\n   System\n\n"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-func create_lost_message() {
+create_lost_message() {
 
     # Make sure we have the user's name and e-mail for the lost message
 
