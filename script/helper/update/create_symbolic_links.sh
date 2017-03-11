@@ -23,7 +23,7 @@ link_file() {
 
         # Either the target doesn't exist, or is already the way we
         # want, so just proceed normally.
-        
+
         overwrite=true
 
     elif ! $overwrite_all && ! $backup_all && ! $skip_all; then
@@ -67,7 +67,7 @@ link_file() {
     # safe and do a backup instead.
 
     if $overwrite && [ -e "$targetFile" ] && [ ! -L "$targetFile" ]; then
-        
+
         print_warning "$targetFile: Cannot overwrite a non-symlink, backing up instead"
         overwrite=false
         backup=true
@@ -87,7 +87,7 @@ link_file() {
     elif $backup; then
 
         # Choose a unique backup name
-        
+
         backupFile="${targetFile}.backup"
         if [ -e "$backupFile" -o -L "$backupFile" ]; then
             i=2
@@ -112,7 +112,7 @@ link_file() {
 }
 
 find_dotfiles() {
-        
+
     local -r dotfilesDirectory=$1
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,54 +160,26 @@ install_dotfiles() {
 
 }
 
-check_dropbox_folder() {
-
-    local -r dropboxDotfiles=$1
-    local -r lsCmd="ls -A \"$dropboxDotfiles\""
-
-    # Wait up to 2 minutes for the dropbox dotfiles folder to
-    # appear (this is because it may take a little while to sync)
-
-    for (( i=1; i<=40; i++ )); do
-
-        [ -d $dropboxDotfiles ] && \
-            [ -n "$(eval $lsCmd)" ] && \
-            break
-        sleep 3
-
-    done
-
-    # Wait another 30 seconds, for the contents of the dotfiles
-    # folder to populate
-
-    sleep 30
-
-}
-
 install_dropbox_dotfiles() {
-    
+
     local -r dropbox="$(get_dropbox_folder)"
     local -r dropboxDotfiles="$dropbox/dotfiles"
 
     # Ensure the dropbox folder exists
-    
+
     if [ ! -d "$dropbox" ]; then
         print_warning "Dropbox was not detected on this system, skipping"
         return
     fi
 
-    # Wait if necessary, until the dropbox dotfiles folder appears
-
-    check_dropbox_folder "$dropboxDotfiles"
-
     # Install dotfiles if a dotfiles folder exists
-    
+
     if [ -d "$dropboxDotfiles" ]; then
         install_dotfiles "$dropboxDotfiles" "$@"
     else
         print_warning "Dropbox folder did not contain any dotfiles, skipping"
     fi
-    
+
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -218,7 +190,7 @@ main() {
     install_dropbox_dotfiles
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        
+
     print_in_purple "\n • Link dotfiles from repo\n\n"
     install_dotfiles "$(cd ../../../src && pwd)" "$@"
 
