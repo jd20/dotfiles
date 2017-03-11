@@ -165,10 +165,10 @@ check_dropbox_folder() {
     local -r dropboxDotfiles=$1
     local -r lsCmd="ls -A \"$dropboxDotfiles\""
 
-    # Wait up to 60 seconds for the dropbox dotfiles folder to
+    # Wait up to 2 minutes for the dropbox dotfiles folder to
     # appear (this is because it may take a little while to sync)
 
-    for (( i=1; i<=20; i++ )); do
+    for (( i=1; i<=40; i++ )); do
 
         [ -d $dropboxDotfiles ] && \
             [ -n "$(eval $lsCmd)" ] && \
@@ -177,10 +177,10 @@ check_dropbox_folder() {
 
     done
 
-    # Wait another 15 seconds, for the contents of the dotfiles
+    # Wait another 30 seconds, for the contents of the dotfiles
     # folder to populate
 
-    sleep 15
+    sleep 30
 
 }
 
