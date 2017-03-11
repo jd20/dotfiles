@@ -8,6 +8,9 @@ export PROJECTS="$HOME/Code"
 # your default editor
 export EDITOR='code'
 
+# Add bin to PATH
+export PATH="$PATH:$DOTFILES/src/bin"
+
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/src/*/*.zsh)
