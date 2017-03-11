@@ -36,7 +36,7 @@ install_modules() {
         "
         
         for module in $modules; do
-            code --install-extension "$module" || true
+            code --install-extension "$module" &> /dev/null
         done
     fi
 }

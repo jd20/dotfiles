@@ -31,7 +31,7 @@ install_modules() {
         "
 
         for module in $modules; do
-            apm install "$module" || true
+            apm install "$module" &> /dev/null
         done
 
         modules="
@@ -40,7 +40,7 @@ install_modules() {
         "
 
         for module in $modules; do
-            apm remove "$module" || true
+            apm remove "$module" &> /dev/null
         done
     fi
 }
