@@ -163,21 +163,24 @@ install_dotfiles() {
 check_dropbox_folder() {
 
     local -r dropboxDotfiles=$1
+    local -r lsCmd="ls -A \"$dropboxDotfiles\""
 
-    # Wait up to 15 seconds for the dropbox dotfiles folder to
+    # Wait up to 60 seconds for the dropbox dotfiles folder to
     # appear (this is because it may take a little while to sync)
 
-    for (( i=1; i<=5; i++ )); do
+    for (( i=1; i<=20; i++ )); do
 
-        [ -d $dropboxDotfiles ] && break
+        [ -d $dropboxDotfiles ] && \
+            [ -n "$(eval $lsCmd)" ] && \
+            break
         sleep 3
 
     done
 
-    # Wait another 5 seconds, for the contents of the dotfiles
+    # Wait another 15 seconds, for the contents of the dotfiles
     # folder to populate
 
-    sleep 5
+    sleep 15
 
 }
 
