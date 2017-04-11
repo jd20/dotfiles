@@ -7,14 +7,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 find_installers() {
 
-    findCmd="find ../src -name \"*~\" -prune -o $(find_ignore_dirs)"
-    findCmd="$findCmd -name install.sh -maxdepth 2 -print"
+    findCmd="find ../src -maxdepth 2 -name \"*~\" -prune -o"
+    findCmd="$findCmd $(find_ignore_dirs) -name install.sh -print"
     eval "$findCmd"
 
 }
 
 run_installers() {
-        
+
     IFS=$'\n' installers=($(find_installers))
 
     for i in "${installers[@]}"; do
