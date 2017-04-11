@@ -38,6 +38,15 @@ autoremove() {
 
 }
 
+install_deb() {
+
+    declare -r PACKAGE_URL="$2"
+    declare -r PACKAGE_READABLE_NAME="$1"
+
+    execute "wget $PACKAGE_URL -o /tmp/pkg.deb && sudo dpkg -i /tmp/pkg.deb" "$PACKAGE_READABLE_NAME"
+
+}
+
 install_package() {
 
     declare -r PACKAGE="$2"
@@ -57,7 +66,7 @@ package_is_installed() {
     dpkg -s "$1" &> /dev/null
 }
 
-update() {
+apt_update() {
 
     # Resynchronize the package index files from their sources.
 
@@ -67,7 +76,7 @@ update() {
 
 }
 
-upgrade() {
+apt_upgrade() {
 
     # Install the newest versions of all packages installed.
 

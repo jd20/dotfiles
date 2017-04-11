@@ -2,12 +2,12 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../../script/helper/utils.sh" \
-    && . "utils.sh"
-
-require_ubuntu
+    && . "./utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-./apt.sh
-./apps.sh
-./zsh.sh
+print_in_purple "\n   ZSH\n\n"
+
+install_package "ZSH" "zsh"
+chsh -s "$(which zsh)" &> /dev/null
+print_result $? "ZSH (use latest version)"

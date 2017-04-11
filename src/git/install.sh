@@ -8,7 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # Don't ask ssh password all the time
 
 setup_credentials() {
-    if [ "$(uname -s)" = "Darwin" ]; then
+    if [ "$(get_os)" == "macos" ]; then
         git config --global credential.helper osxkeychain
     else
         git config --global credential.helper cache
@@ -27,8 +27,20 @@ setup_diff_tool() {
 
 print_in_purple "\n   Git\n\n"
 
-execute "setup_credentials" \
-    "Setup credential helper"
+main() {
 
-execute "setup_diff_tool" \
-    "Setup diff tool"
+    # If Ubuntu, git needs to be installed first
+    if [ "$(get_os)" == "ubuntu" ]; then
+        . "../ubuntu/utils.sh"
+        install_package "Git" "git"
+    fi
+
+    execute "setup_credentials" \
+        "Setup credential helper"
+
+    execute "setup_diff_tool" \
+        "Setup diff tool"
+
+}
+
+main
