@@ -6,8 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_antibody() {
-    if which brew >/dev/null 2>&1; then
-        brew install getantibody/tap/antibody || brew upgrade antibody
+    if [ "$(get_os)" == "macos" ]; then
+        brew install antibody
     else
         curl -sL https://git.io/antibody | sh -s
     fi
