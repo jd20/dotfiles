@@ -133,7 +133,7 @@ find_ignore_dirs() {
     #   - Hidden directories or files (i.e. .git or .gitignore)
     #   - The contents of directories that will be symlinked (their
     #     names end with ~)
-    
+
     # Note: When searching for dotfiles to symlink, we look for the
     # following:
     #
@@ -142,7 +142,7 @@ find_ignore_dirs() {
     #
     # While also ignoring the following:
     #
-    #   - 
+    #   -
     #   - OS-specific directories that don't match our OS
     #   - Directories with special meaning (bin, disabled, ...)
     #   - Hidden directories or files (i.e. .git or .gitignore)
@@ -171,7 +171,7 @@ get_answer() {
 get_dropbox_folder() {
 
     if [ ! -f $HOME/.dropbox/info.json ]; then return; fi
-        
+
     local script="
 import sys, json
 j = json.load(sys.stdin)
@@ -179,7 +179,7 @@ if 'personal' in j:
     p = j['personal']['path']
 else:
     p = j['business']['path']
-print p
+print(p)
     "
 
     cat "$HOME/.dropbox/info.json" | python -c "$script"

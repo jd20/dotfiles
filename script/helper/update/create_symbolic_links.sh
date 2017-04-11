@@ -119,14 +119,14 @@ find_dotfiles() {
 
     # Execute two find commands, this one will find files:
 
-    findFiles="find $dotfilesDirectory -name \"*~\" -prune -o $(find_ignore_dirs)"
-    findFiles="$findFiles -type f $(find_ignore_files) -maxdepth 2 -print"
+    findFiles="find $dotfilesDirectory -maxdepth 2 -name \"*~\" -prune -o"
+    findFiles="$findFiles $(find_ignore_dirs) -type f $(find_ignore_files) -print"
     eval "$findFiles"
 
     # And this one will find directories (ending with ~):
 
-    findDirs="find $dotfilesDirectory -path \"./*~/*\" -prune -o $(find_ignore_dirs)"
-    findDirs="$findDirs -type d -name \"*~\" -maxdepth 2 -print"
+    findDirs="find $dotfilesDirectory -maxdepth 2 -path \"./*~/*\" -prune -o"
+    findDirs="$findDirs $(find_ignore_dirs) -type d -name \"*~\" -print"
     eval "$findDirs"
 
 }
