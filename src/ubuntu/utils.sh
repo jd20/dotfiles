@@ -43,7 +43,7 @@ install_deb() {
     declare -r PACKAGE_URL="$2"
     declare -r PACKAGE_READABLE_NAME="$1"
 
-    execute "wget $PACKAGE_URL -o /tmp/pkg.deb && sudo dpkg -i /tmp/pkg.deb" "$PACKAGE_READABLE_NAME"
+    execute "wget $PACKAGE_URL -o /tmp/pkg.deb && sudo dpkg --install /tmp/pkg.deb" "$PACKAGE_READABLE_NAME"
 
 }
 

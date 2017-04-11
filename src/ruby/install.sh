@@ -12,6 +12,9 @@ install_rbenv() {
     else
         . "../ubuntu/utils.sh"
         install_package "rbenv" "rbenv"
+        install_package "libssl" "libssl-dev"
+        install_package "libreadline" "libreadline-dev"
+        install_package "zlib" "zlib1g-dev"
     fi
     eval "$(rbenv init -)"
     execute "git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build" \

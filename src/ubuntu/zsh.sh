@@ -9,5 +9,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 print_in_purple "\n   ZSH\n\n"
 
 install_package "ZSH" "zsh"
-chsh -s "$(which zsh)" &> /dev/null
+chsh -s "$(which zsh)"
 print_result $? "ZSH (use latest version)"

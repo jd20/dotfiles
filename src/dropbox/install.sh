@@ -37,7 +37,7 @@ print_in_purple "\n   Dropbox\n\n"
 main() {
 
     # If Dropbox is already installed, do nothing
-    if [ -n get_dropbox_folder ]; then
+    if [ -n "$(get_dropbox_folder)" ]; then
         print_success "Dropbox"
         return
     fi

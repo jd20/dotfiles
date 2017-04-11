@@ -12,6 +12,7 @@ install_apps() {
     #add_ppa "webupd8team/java"
     #add_ppa "paolorotolo/android-studio"
     #apt_update
+    install_package "libindicator / libappindicator" "libindicator7 libappindicator1"
 
     #install_package "Ubuntu Make" "ubuntu-make"
     #execute "umake android --accept-license" "Android Studio"
@@ -21,6 +22,7 @@ install_apps() {
     install_package "cURL" "curl"
     #execute "umake go \"$HOME/.local/share/umake/go/go-lang\"" "Go"
     install_package "NodeJS" "nodejs"
+    install_package "nVidia Drivers" "nvidia-current"
     install_deb "Hyper", "https://hyper-updates.now.sh/download/linux_deb"
     #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     #install_package "Oracle Java 8", "oracle-java8-installer"
@@ -32,12 +34,13 @@ install_apps() {
 
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+print_in_purple "\n   Installing Apps\n\n"
+
 main() {
 
-    print_in_purple "\n   Installing Apps\n\n"
     install_apps
-
-    printf "\n"
     autoremove
 
 }

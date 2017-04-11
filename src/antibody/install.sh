@@ -7,9 +7,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 install_antibody() {
     if [ "$(get_os)" == "macos" ]; then
-        brew install antibody
+        brew_install "Install antibody" "antibody"
     else
-        curl -sL https://git.io/antibody | sh -s
+        execute "curl -sL https://git.io/antibody | sh -s" \
+            "Install antibody"
     fi
 }
 
@@ -17,8 +18,7 @@ install_antibody() {
 
 print_in_purple "\n   Antibody\n\n"
 
-execute "install_antibody" \
-    "Install antibody"
+install_antibody
 
 execute "antibody bundle < bundles.txt > ~/.zsh-bundles.sh" \
     "Create static cache of bundles"
