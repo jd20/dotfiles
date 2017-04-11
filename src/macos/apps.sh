@@ -8,13 +8,19 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 install_packages() {
 
+    # Certain packages require Java, so install that first
+    cask_install "Oracle Java", "java"
+
     brew_install "AWS Command Line Interface" "awscli"
+    brew_install "CLOC", "cloc"
+    brew_install "coreutils", "coreutils"
     brew_install "FFmpeg" "ffmpeg"
     brew_install "Git" "git"
     brew_install "Go" "go"
     #brew_install "GPG Agent" "gpg-agent"
     #brew_install "GPG" "gpg"
     brew_install "GStreamer" "gstreamer"
+    brew_install "hazel" "hazel"
     brew_install "Heroku" "heroku"
     brew_install "htop" "htop"
     brew_install "hub" "hub"
@@ -52,6 +58,7 @@ install_apps() {
     cask_install "Logitech MyHarmony" "logitech-myharmony"
     mas_install "Mactracker" "430255202"
     cask_install "Microsoft Office" "microsoft-office"
+    cask_install "Pusher", "pusher"
     mas_install "Reeder" "880001334"
     cask_install "Rocket" "rocket"
     cask_install "Sequel Pro" "sequel-pro"

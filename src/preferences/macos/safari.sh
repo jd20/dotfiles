@@ -7,8 +7,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Safari\n\n"
 
-execute "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false" \
-    "Disable opening 'safe' files automatically"
+execute "defaults write com.apple.Safari AutoOpenSafeDownloads -bool true" \
+    "Enable opening 'safe' files automatically"
 
 execute "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true" \
     "Set backspace key to go to the previous page in history"
