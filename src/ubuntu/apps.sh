@@ -22,7 +22,7 @@ install_apps() {
     install_package "cURL" "curl"
     #execute "umake go \"$HOME/.local/share/umake/go/go-lang\"" "Go"
     install_package "NodeJS" "nodejs"
-    install_package "nVidia Drivers" "nvidia-current"
+    install_package "nVidia Drivers" "nvidia-367"
     install_deb "Hyper", "https://hyper-updates.now.sh/download/linux_deb"
     #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     #install_package "Oracle Java 8", "oracle-java8-installer"
