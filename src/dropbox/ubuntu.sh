@@ -12,8 +12,9 @@ install_dropbox() {
 
     if ! is_dropbox_configured; then
 
-        wget https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb -o /tmp/dropbox_2015.10.28_amd64.deb
-        xdg-open /tmp/dropbox_2015.10.28_amd64.deb
+        declare -r DROPBOX_URL="https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb"
+        wget $DROPBOX_URL -qO /tmp/pkg.deb && xdg-open /tmp/pkg.deb
+
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
