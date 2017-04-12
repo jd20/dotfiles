@@ -12,10 +12,15 @@ install_dropbox() {
 
     if ! is_dropbox_configured; then
 
+        echo "Add to source list..."
         add_to_source_list "[arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" "dropbox.list"
-        sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
-        sudo apt update
-        sudo apt install dropbox python-gpgme
+        echo "Add key..."
+        sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+        echo "apt update"
+        sudo apt update -y
+        echo "install dropbox and python-gpgme"
+        sudo apt install -y dropbox python-gpgme
+        echo "start dropbox finally"
         dropbox start
 
     fi
@@ -38,4 +43,5 @@ is_dropbox_configured() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-execute "install_dropbox" "Install Dropbox"
+install_dropbox
+#execute "install_dropbox" "Install Dropbox"
