@@ -21,7 +21,7 @@ install_dropbox() {
         echo "install dropbox and python-gpgme"
         sudo apt install -y dropbox python-gpgme
         echo "start dropbox finally"
-        dropbox start
+        dropbox start -i
 
     fi
 
