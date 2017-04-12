@@ -12,7 +12,7 @@ create_localrc() {
     # properly.
 
     declare -r filePath="$HOME/.localrc"
-    declare -r dotfiles="DOTFILES=\"$(cd ../../../src && pwd)\""
+    declare -r dotfiles="DOTFILES=\"$(cd ../../.. && pwd)\""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

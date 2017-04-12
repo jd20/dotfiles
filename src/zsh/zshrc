@@ -1,6 +1,14 @@
 #!/bin/zsh
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+# shellcheck disable=SC1090
+[ -f ~/.localrc ] && . ~/.localrc
+
 # shortcut to this dotfiles path is $DOTFILES
-export DOTFILES="$HOME/Code/dotfiles"
+if [ -z $DOTFILES ]; then
+    export DOTFILES="$HOME/dotfiles"
+fi
 
 # your project folder that we can `c [tab]` to
 export PROJECTS="$HOME/Code"
@@ -42,8 +50,3 @@ for file in ${(M)config_files:#*/completion.zsh}; do
 done
 
 unset config_files updated_at
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-# shellcheck disable=SC1090
-[ -f ~/.localrc ] && . ~/.localrc
