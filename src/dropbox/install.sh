@@ -47,8 +47,8 @@ main() {
 
     # Wait until we can reasonably believe the Dropbox folder
     # has had time to sync
-    execute "Waiting for Dropbox to sync" \
-        "populate_dropbox_folder"
+    execute "populate_dropbox_folder" \
+        "Waiting for Dropbox to sync"
 
 }
 
