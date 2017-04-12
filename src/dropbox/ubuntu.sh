@@ -12,8 +12,11 @@ install_dropbox() {
 
     if ! is_dropbox_configured; then
 
-        declare -r DROPBOX_URL="https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb"
-        wget $DROPBOX_URL -qO /tmp/pkg.deb && xdg-open /tmp/pkg.deb
+        add_to_source_list "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" "dropbox.list"
+        sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+        sudo apt update
+        sudo apt install dropbox python-gpgme
+        dropbox start
 
     fi
 
