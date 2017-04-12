@@ -12,7 +12,7 @@ install_dropbox() {
 
     if ! is_dropbox_configured; then
 
-        add_to_source_list "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" "dropbox.list"
+        add_to_source_list "[arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" "dropbox.list"
         sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
         sudo apt update
         sudo apt install dropbox python-gpgme
