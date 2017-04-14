@@ -9,6 +9,8 @@ install_antibody() {
     if [ "$(get_os)" == "macos" ]; then
         brew install antibody
     else
+        . "../ubuntuy/utils.sh"
+        install_package "cURL" "curl"
         wget -qO - https://git.io/antibody | bash -s
     fi
 }

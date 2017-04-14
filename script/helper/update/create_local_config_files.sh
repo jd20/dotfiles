@@ -34,7 +34,7 @@ export $dotfiles
             '$configs' >> $filePath" \
             "$filePath"
 
-    elif ! grep "$dotfiles" < "$filePath" &> /dev/null; then
+    elif ! grep "export DOTFILES" < "$filePath" &> /dev/null; then
 
         execute \
             "printf '%s' '$configs' >> $filePath" \
