@@ -17,9 +17,15 @@ setup_repos() {
     add_key "https://bazel.build/bazel-release.pub.gpg"
 }
 
+install_java() {
+
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+    install_package "Oracle Java 8" "oracle-java8-installer"
+
+}
+
 install_packages() {
 
-    install_package "Oracle Java 8" "oracle-java8-installer"
     install_package "Bazel" "bazel"
     install_package "Build Essential" "build-essential"
     install_package "Chrome" "google-chrome-stable"
@@ -35,7 +41,6 @@ install_packages() {
     if [ -n "$(sudo lspci | grep -i nvidia)" ]; then
         install_package "nVidia Drivers" "nvidia-367"
     fi
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     install_package "Python Development Headers" "python2.7-dev python3.6-dev"
     install_package "ShellCheck" "shellcheck"
     install_package "sqlite3" "libsqlite3-dev"
@@ -56,6 +61,7 @@ main() {
     setup_repos
     apt_update
     apt_upgrade
+    install_java
     install_packages
     autoremove
 
