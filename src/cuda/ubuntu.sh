@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../../script/helper/utils.sh"
+    && . "../../script/helper/utils.sh" \
     && . "../ubuntu/utils.sh"
 
 declare -r CUDA_PKG="/tmp/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb"
