@@ -13,7 +13,7 @@ setup_repos() {
     add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub"
     add_to_source_list "[arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" "google-chrome.list"
     add_ppa "jonathonf/python-3.6"
-    add_to_source_list "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" "bazel.list"
+    add_to_source_list "[arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" "bazel.list"
     add_key "https://bazel.build/bazel-release.pub.gpg"
 }
 
