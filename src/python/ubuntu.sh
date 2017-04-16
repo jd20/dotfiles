@@ -15,6 +15,8 @@ install_pyenv() {
 
 venv() {
     pyenv virtualenv 3.6.1 "$1" &> /dev/null || pyenv activate -q "$1"
+    echo "python: $(which python)"
+    echo "pip: $(which pip)"
 }
 
 install_python36() {
