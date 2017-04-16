@@ -19,6 +19,8 @@ setup_repos() {
 
 install_packages() {
 
+    install_package "Oracle Java 8" "oracle-java8-installer"
+    install_package "Bazel" "bazel"
     install_package "Build Essential" "build-essential"
     install_package "Chrome" "google-chrome-stable"
     install_package "cURL" "curl"
@@ -34,7 +36,6 @@ install_packages() {
         install_package "nVidia Drivers" "nvidia-367"
     fi
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-    install_package "Oracle Java 8", "oracle-java8-installer"
     install_package "Python Development Headers" "python2.7-dev python3.6-dev"
     install_package "ShellCheck" "shellcheck"
     install_package "sqlite3" "libsqlite3-dev"
@@ -43,9 +44,6 @@ install_packages() {
     install_package "Ubuntu Make" "ubuntu-make"
     install_package "VLC" "vlc"
     install_package "xclip" "xclip"
-
-    exit 1
-    install_package "Bazel" "bazel"
 
 }
 
