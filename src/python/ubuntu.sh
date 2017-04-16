@@ -69,6 +69,14 @@ install_tensorflow() {
         "Create virtual environment 'tf'"
     execute "pip install numpy dev pip wheel" \
         "Install Python build packages"
+    execute "" \
+        "Configure build"
+    execute "bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package" \
+        "Compile TensorFlow"
+    execute "bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg" \
+        "Build pip package"
+    execute "sudo pip install /tmp/tensorflow_pkg/tensorflow-1.0.1-py2-none-any.whl" \
+        "Install wheel"
 
 }
 

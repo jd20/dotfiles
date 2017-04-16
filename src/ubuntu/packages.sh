@@ -19,7 +19,6 @@ setup_repos() {
 
 install_packages() {
 
-    install_package "Bazel" "bazel"
     install_package "Build Essential" "build-essential"
     install_package "Chrome" "google-chrome-stable"
     install_package "cURL" "curl"
@@ -44,6 +43,9 @@ install_packages() {
     install_package "Ubuntu Make" "ubuntu-make"
     install_package "VLC" "vlc"
     install_package "xclip" "xclip"
+
+    exit 1
+    install_package "Bazel" "bazel"
 
 }
 
