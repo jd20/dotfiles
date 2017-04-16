@@ -33,6 +33,7 @@ configure_opencv() {
 }
 
 build_opencv() {
+    cd /tmp/opencv-$OPENCV_VERSION/build
     make -j4
     sudo make install
     sudo ldconfig
