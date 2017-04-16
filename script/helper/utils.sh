@@ -261,9 +261,9 @@ is_supported_version() {
 
 nvidia_gpu_present() {
     if [ -n "$(sudo lspci | grep -i nvidia)" ]; then
-        return 1
+        return 0
     fi
-    return 0
+    return 1
 }
 
 join_array() {
