@@ -8,7 +8,7 @@ declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSIT
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare dotfilesDirectory="$HOME/dotfiles"
+declare dotfilesDirectory="$HOME/Code/dotfiles"
 declare skipQuestions=false
 
 # ----------------------------------------------------------------------
@@ -266,7 +266,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./bootstrap
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if cmd_exists "git"; then
@@ -274,7 +274,7 @@ main() {
             ./helper/setup/initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
     fi
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./update "$@"
