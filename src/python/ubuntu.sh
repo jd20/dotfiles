@@ -48,6 +48,7 @@ install_opencv() {
     install_package "GUI Libraries" "libgtk-3-dev"
     install_package "Matrix Libraries" "libatlas-base-dev gfortran"
 
+    cd /tmp
     venv cv
     print_success "Create virtual environment 'cv'"
     execute "pip install numpy" \
