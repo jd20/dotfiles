@@ -10,9 +10,9 @@ run_installer() {
 
     if [ -e $script ]; then
         if [ ! -x $script ]; then
-            print_error "Installers must be executable: $i"
+            print_error "Installers must be executable: $script"
         else
-            "$i"
+            "$script"
         fi
     fi
 }
