@@ -13,6 +13,10 @@ install_pyenv() {
     export PATH="$HOME/.pyenv/bin:$PATH"
 }
 
+venv() {
+    pyenv virtualenv "$1" &> /dev/null || pyenv activate -q "$1"
+}
+
 install_python36() {
     pyenv install 3.6.1
 }
@@ -44,7 +48,7 @@ install_opencv() {
     install_package "GUI Libraries" "libgtk-3-dev"
     install_package "Matrix Libraries" "libatlas-base-dev gfortran"
 
-    execute "pyenv virtualenv 3.6.1 cv && pyenv activate cv" \
+    execute "venv cv" \
         "Create virtual environment 'cv'"
     execute "pip install numpy" \
         "Install numpy"
@@ -68,7 +72,7 @@ install_tensorflow() {
     git clone https://github.com/tensorflow/tensorflow .
     git checkout r1.0
 
-    execute "pyenv virtualenv 3.6.1 tf && pyenv activate tf" \
+    execute "venv tf" \
         "Create virtual environment 'tf'"
     execute "pip install numpy dev pip wheel" \
         "Install Python build packages"
