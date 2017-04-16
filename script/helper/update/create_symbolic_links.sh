@@ -133,14 +133,7 @@ find_dotfiles() {
 
 install_dotfiles() {
 
-    local overwrite_all=false backup_all=false skip_all=false
     local -r dotfilesDirectory=$1
-    shift
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    skip_questions "$@" \
-        && overwrite_all=true
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -186,13 +179,20 @@ install_dropbox_dotfiles() {
 
 main() {
 
+    local overwrite_all=false backup_all=false skip_all=false
+
+    skip_questions "$@" \
+        && overwrite_all=true
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     print_in_purple "\n • Link local config files from Dropbox\n\n"
     install_dropbox_dotfiles
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_purple "\n • Link dotfiles from repo\n\n"
-    install_dotfiles "$(cd ../../../src && pwd)" "$@"
+    install_dotfiles "$(cd ../../../src && pwd)"
 
 }
 
