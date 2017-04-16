@@ -50,8 +50,6 @@ install_opencv() {
 
     venv cv
     print_success "Create virtual environment 'cv'"
-    print_yellow "python: $(which python)"
-    print_yellow "pip: $(which pip)"
     execute "pip install numpy" \
         "Install numpy"
     execute "wget -qO /tmp/opencv-$OPENCV_VERSION.zip $OPENCV_URL && wget -qO /tmp/opencv_contrib-$OPENCV_VERSION.zip $OPENCV_CONTRIB_URL" \
