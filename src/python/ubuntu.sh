@@ -71,8 +71,8 @@ install_tensorflow() {
     fi
 
     mkdir /tmp/tensorflow && cd /tmp/tensorflow
-    git clone https://github.com/tensorflow/tensorflow .
-    git checkout r1.0
+    git clone -q https://github.com/tensorflow/tensorflow .
+    git checkout -q r1.0
 
     venv tf
     print_success "Create virtual environment 'tf'"
@@ -101,8 +101,8 @@ main() {
     # Install OpenCV and Tensorflow
     print_in_purple "\n   OpenCV\n\n"
     install_opencv
-    print_in_purple "\n   Tensorflow\n\n"
-    install_tensorflow
+    #print_in_purple "\n   Tensorflow\n\n"
+    #install_tensorflow
 }
 
 main
