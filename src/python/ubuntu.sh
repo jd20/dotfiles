@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../../script/helper/utils.sh"
+    && . "../../script/helper/utils.sh" \
     && . "../ubuntu/utils.sh"
 
 declare -r OPENCV_VERSION="3.2.0"
@@ -11,8 +11,6 @@ declare -r OPENCV_CONTRIB_URL="https://github.com/Itseez/opencv_contrib/archive/
 install_pyenv() {
     curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
     export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 }
 
 install_python36() {
@@ -61,6 +59,11 @@ install_opencv() {
 
 install_tensorflow() {
 
+    bazel_flags=
+    if nvidia_gpu_present; then
+        bazel_flags="--config=cuda"
+    fi
+
     mkdir /tmp/tensorflow && cd /tmp/tensorflow
     git clone https://github.com/tensorflow/tensorflow .
     git checkout r1.0
@@ -71,7 +74,7 @@ install_tensorflow() {
         "Install Python build packages"
     execute "" \
         "Configure build"
-    execute "bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package" \
+    execute "bazel build --config=opt $bazel_flags //tensorflow/tools/pip_package:build_pip_package" \
         "Compile TensorFlow"
     execute "bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg" \
         "Build pip package"
@@ -80,9 +83,20 @@ install_tensorflow() {
 
 }
 
-execute "install_pyenv" "pyenv"
-execute "install_python36" "Python 3.6.1"
-print_in_purple "\n   OpenCV\n\n"
-install_opencv
-print_in_purple "\n   Tensorflow\n\n"
-install_tensorflow
+main() {
+    # Install and load pyenv
+    execute "install_pyenv" "pyenv"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
+    # Update to Python 3.6
+    execute "install_python36" "Python 3.6.1"
+
+    # Install OpenCV and Tensorflow
+    print_in_purple "\n   OpenCV\n\n"
+    install_opencv
+    print_in_purple "\n   Tensorflow\n\n"
+    install_tensorflow
+}
+
+main

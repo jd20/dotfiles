@@ -31,10 +31,16 @@ install_cudnn() {
     sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
 }
 
-if [ -n "$(sudo lspci | grep -i nvidia)" ]; then
+if nvidia_gpu_present; then
+
     execute "download_cuda" "Download CUDA Toolkit 8.0"
     execute "install_cuda" "Install CUDA Tookit 8.0"
     execute "download_cudnn" "Download cuDNN 5.1"
     execute "install_cudnn" "Install cuDNN 5.1"
     install_package "NVIDIA CUDA Profile Tools Interface" "libcupti-dev"
+
+else
+
+    print_success "nVidia graphics card not detected"
+
 fi

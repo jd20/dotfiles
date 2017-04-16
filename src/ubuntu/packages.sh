@@ -31,14 +31,14 @@ install_packages() {
     install_package "Chrome" "google-chrome-stable"
     install_package "cURL" "curl"
     install_package "GnuPG archive keys" "debian-archive-keyring"
-    install_deb "Hyper", "https://hyper-updates.now.sh/download/linux_deb"
+    install_deb "Hyper" "https://hyper-updates.now.sh/download/linux_deb"
     install_package "libbz2" "libbz2-dev"
     install_package "libindicator / libappindicator" "libindicator7 libappindicator1"
     install_package "libssl" "libssl-dev"
     install_package "libreadline" "libreadline-dev"
     install_package "Linux headers" "linux-headers-$(uname -r)"
     install_package "NodeJS" "nodejs"
-    if [ -n "$(sudo lspci | grep -i nvidia)" ]; then
+    if nvidia_gpu_present; then
         install_package "nVidia Drivers" "nvidia-367"
     fi
     install_package "Python Development Headers" "python2.7-dev python3.6-dev"
