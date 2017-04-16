@@ -5,33 +5,38 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-find_installers() {
+run_installer() {
+    local -r script="../src/$1/install.sh"
 
-    findCmd="find ../src -maxdepth 2 -name \"*~\" -prune -o"
-    findCmd="$findCmd $(find_ignore_dirs) -name install.sh -print"
-    eval "$findCmd"
-
-}
-
-run_installers() {
-
-    IFS=$'\n' installers=($(find_installers))
-
-    for i in "${installers[@]}"; do
-        if [ ! -x "$i" ]; then
+    if [ -e $script ]; then
+        if [ ! -x $script ]; then
             print_error "Installers must be executable: $i"
         else
             "$i"
         fi
-    done
-
+    fi
 }
 
 main() {
 
     print_in_purple "\n • Run topic-specific installers\n"
 
-    run_installers
+    # Execute the OS-specific installer first
+    run_installer "$(get_os)"
+
+    # Order can be controlled here, in case some installers depend on others
+    # running first
+    run_installer "preferences"
+    run_installer "git"
+    run_installer "dropbox"
+    run_installer "cuda"
+    run_installer "ruby"
+    run_installer "python" # depends on cuda / git
+    run_installer "antibody"
+    run_installer "atom"
+    run_installer "aws"
+    run_installer "vim"
+    run_installer "vscode"
 
 }
 

@@ -125,45 +125,6 @@ find_ignore_files() {
 
 }
 
-find_ignore_dirs() {
-
-    # When finding dotfiles, ignore the following directories:
-    #   - OS-specific directories that don't match our OS
-    #   - Directories with special meaning (bin, disabled, ...)
-    #   - Hidden directories or files (i.e. .git or .gitignore)
-    #   - The contents of directories that will be symlinked (their
-    #     names end with ~)
-
-    # Note: When searching for dotfiles to symlink, we look for the
-    # following:
-    #
-    #   - Files in the dotfiles directory, or it's direct descendants
-    #   - Directories whose name ends with ~
-    #
-    # While also ignoring the following:
-    #
-    #   -
-    #   - OS-specific directories that don't match our OS
-    #   - Directories with special meaning (bin, disabled, ...)
-    #   - Hidden directories or files (i.e. .git or .gitignore)
-    #   - The contents of directories that will be symlinked (their
-    #     names end with ~)
-
-    local ignoreOS="ubuntu"
-    if [ "$(get_os)" == "ubuntu" ]; then ignoreOS="macos"; fi
-
-    declare -a ignoreDirs=(
-        "$ignoreOS"
-        "bin"
-        "disabled"
-        "functions"
-    )
-
-    printf -- '-path "./.*" -prune -o '
-    join_array '-name "' '" -prune -o ' "${ignoreDirs[@]}"
-
-}
-
 get_answer() {
     printf "%s" "$REPLY"
 }

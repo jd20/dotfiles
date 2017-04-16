@@ -8,6 +8,5 @@ require_ubuntu
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-./apt.sh
-./apps.sh
+./packages.sh
 ./zsh.sh

@@ -1,12 +1,10 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../../script/helper/utils.sh" \
-    && . "./utils.sh"
+    && . "../../script/helper/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   APT\n\n"
+print_in_purple "\n   CUDA\n\n"
 
-apt_update
-apt_upgrade
+"./$(get_os).sh"
