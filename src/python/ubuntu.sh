@@ -15,8 +15,6 @@ install_pyenv() {
 
 venv() {
     pyenv virtualenv 3.6.1 "$1" &> /dev/null || pyenv activate -q "$1"
-    echo "python: $(which python)"
-    echo "pip: $(which pip)"
 }
 
 install_python36() {
@@ -50,8 +48,10 @@ install_opencv() {
     install_package "GUI Libraries" "libgtk-3-dev"
     install_package "Matrix Libraries" "libatlas-base-dev gfortran"
 
-    execute "venv cv" \
-        "Create virtual environment 'cv'"
+    venv cv
+    print_success "Create virtual environment 'cv'"
+    print_yellow "python: $(which python)"
+    print_yellow "pip: $(which pip)"
     execute "pip install numpy" \
         "Install numpy"
     execute "wget -qO /tmp/opencv-$OPENCV_VERSION.zip $OPENCV_URL && wget -qO /tmp/opencv_contrib-$OPENCV_VERSION.zip $OPENCV_CONTRIB_URL" \
@@ -74,8 +74,8 @@ install_tensorflow() {
     git clone https://github.com/tensorflow/tensorflow .
     git checkout r1.0
 
-    execute "venv tf" \
-        "Create virtual environment 'tf'"
+    venv tf
+    print_success "Create virtual environment 'tf'"
     execute "pip install numpy dev pip wheel" \
         "Install Python build packages"
     execute "" \
