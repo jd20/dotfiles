@@ -260,7 +260,14 @@ is_supported_version() {
 }
 
 nvidia_gpu_present() {
-    if [ -n "$(sudo lspci | grep -i nvidia)" ]; then
+    local hwinfo_cmd=""
+    if [ "$(get_os)" == "macos" ]; then
+        hwinfo_cmd="system_profiler SPDisplaysDataType"
+    else
+        hwinfo_cmd="sudo lspci"
+    fi
+
+    if [ -n "$($hwinfo_cmd | grep -i nvidia)" ]; then
         return 0
     fi
     return 1
