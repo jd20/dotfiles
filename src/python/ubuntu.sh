@@ -7,6 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 declare -r OPENCV_VERSION="3.2.0"
 declare -r OPENCV_URL="https://github.com/Itseez/opencv/archive/$OPENCV_VERSION.zip"
 declare -r OPENCV_CONTRIB_URL="https://github.com/Itseez/opencv_contrib/archive/$OPENCV_VERSION.zip"
+declare -r OPENCV_LIBRARY="$HOME/.pyenv/versions/cv/lib/python3.6/site-packages/cv2.so"
 
 install_pyenv() {
     curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
@@ -38,10 +39,15 @@ build_opencv() {
     sudo make install
     sudo ldconfig
     ln -s /usr/local/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so \
-        $HOME/.pyenv/versions/cv/lib/python3.6/site-packages/cv2.so
+        $OPENCV_LIBRARY
 }
 
 install_opencv() {
+
+    if [ -e $OPENCV_LIBRARY ]; then
+        print_success "OpenCV already installed"
+        return 0
+    fi
 
     install_package "Build Libraries" "build-essential cmake pkg-config"
     install_package "Image Libraries" "libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev"
