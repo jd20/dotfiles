@@ -14,7 +14,7 @@ fi
 export PROJECTS="$HOME/Code"
 
 # your default editor
-export EDITOR='atom'
+export EDITOR='code'
 
 # Add bin to PATH
 export PATH="$PATH:$DOTFILES/src/bin"
