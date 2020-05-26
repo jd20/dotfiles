@@ -13,4 +13,5 @@
 #   $ e .
 #   $ e /usr/local
 #   # => opens the specified directory in your editor
-exec "$EDITOR" "${1:-.}" > /tmp/editor-log 2>&1 &
+project_file=$(ls *.sublime-project 2>/dev/null | head -n 1)
+exec "$EDITOR" "${*:-${project_file:-.}}" > /tmp/editor-log 2>&1 &

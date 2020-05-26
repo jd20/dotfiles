@@ -14,7 +14,7 @@ fi
 export PROJECTS="$HOME/Code"
 
 # your default editor
-export EDITOR='code'
+export EDITOR='subl'
 
 # Add bin to PATH
 export PATH="$PATH:$DOTFILES/src/bin"

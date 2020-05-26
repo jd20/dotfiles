@@ -22,7 +22,9 @@ module.exports = {
     borderColor: '#333',
 
     // custom css to embed in the main window
-    css: '',
+    css: `.terminal, .term_fit:not(.term_term) {
+        opacity: 1 !important;
+    }`,
 
     // custom css to embed in the terminal window
     termCSS: '',
@@ -79,7 +81,7 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
@@ -89,6 +91,7 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+    scrollback: 100000
   },
 
   // a list of plugins to fetch and install from npm
@@ -105,4 +108,4 @@ module.exports = {
   localPlugins: [],
 
   modifierKeys: { altIsMeta: true }
-};
+}
